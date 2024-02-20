@@ -1,10 +1,7 @@
 from django.urls import path
-from django.urls import path, include
+from . import views
+
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('movies/', include('movies.urls')),
-    path('', include('pages.urls')),
-    path('user/', include('user.urls'))
-
+    path("", views.index, name= "index")
 ]
