@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+{% load humanize}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12">
+
+        {% if uavs %}
+            {% for uav in uavs %}
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img class = "card-img" src="{% static uav.get_image_path%}" alt="">
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <div class="card-title">
+                                <a href = "{% url 'detail' uav.id %}"> {{ uav.model }}</a>
+                            </div>
+                            <p class="card-text">
+                                {{ uav.branch}} {{ uav.category}}
+                            </p>
+                            <p class="card-text">
+                                {{ uav.description}}
+                            </p>
+                            <p class="card-text">
+                                <small class="text-muted">{{ uav.monthly_fee}} $</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning">
+                No UAVS
+            </div>
+        {% endif %}
+
+        
+        
+        
+        
+    </div>
+</div>
+{% endblock %}

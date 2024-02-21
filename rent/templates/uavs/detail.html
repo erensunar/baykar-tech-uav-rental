@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+
+  
+        <div class="col-md-3">
+            <img class = "card-img" src="{% static uav.get_image_path%}" alt="">
+        </div>
+        <div class="col-md-9">
+            <h1> {{ uav.model }}</h1>
+            <hr>
+            <p> {{ uav.description}}</p>
+            <p>Weight: {{ uav.description}}</p>
+            <p>Monthly Fee: {{ uav.monthly_fee}} $</p>
+            
+        </div>
+       
+    </div>
+{% endblock %}
