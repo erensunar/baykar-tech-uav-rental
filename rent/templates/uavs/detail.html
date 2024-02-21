@@ -13,6 +13,7 @@
             <p> {{ uav.description}}</p>
             <p>Weight: {{ uav.description}}</p>
             <p>Monthly Fee: {{ uav.monthly_fee}} $</p>
+            <a href="{% url 'rental_function' uav.id %}" class="btn btn-primary">Rent</a> <!-- Kirala butonu -->
             
         </div>
        

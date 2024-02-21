@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('uav_.urls')),
     path('user/', include('user.urls')),
     path('uavs/', include('uav_.urls')),
+    path('rental/', include('rental.urls')),
 
 ]
