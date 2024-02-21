@@ -16,9 +16,9 @@ def rental_function(request, uav_id):
         uav.save()
         messages.add_message(request, messages.SUCCESS,'Rental completed.')
         return redirect('index')  # Redirect to home page if rental is successful
-    else:
-        messages.add_message(request, messages.WARNING, "This UAV has already been rented.")
-        return redirect('index')  # Redirect to home page if UAV is already rented
+    # else:
+    #     messages.add_message(request, messages.WARNING, "This UAV has already been rented.")
+    #     return redirect('index')  # Redirect to home page if UAV is already rented
 
 
             
