@@ -29,13 +29,9 @@ def rental_function(request, uav_id):
 def my_rentals(request):
     rentals = Rental.objects.filter(renter=request.user)
     for rental in rentals:
-        # Anlık tarihi al
         current_datetime = timezone.now()
-        # Kiralamanın bitiş tarihini bir datetime nesnesine dönüştür
         rental_end_datetime = make_aware(datetime.combine(rental.rental_end_date, datetime.min.time()))
-        # Kalan günleri hesapla
         remaining_days = (rental_end_datetime - current_datetime).days
-        # rental nesnesine kalan günleri ekle
         rental.remaining_days = remaining_days
 
     context = {
@@ -46,5 +42,8 @@ def my_rentals(request):
 
 def cancel_rental(request, rental_id):
     rental = Rental.objects.get(id=rental_id)
+    uav = rental.uav
+    uav.is_rented = False
+    uav.save()
     rental.delete()
     return redirect('my_rentals')  # veya başka bir URL'ye yönlendirme yapın

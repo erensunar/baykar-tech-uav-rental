@@ -13,10 +13,10 @@ def login(request):
         user = auth.authenticate(username= username, password = password)
         if user is not None:
             auth.login(request, user)
-            messages.add_message(request, messages.SUCCESS,'Oturum açıldı.')
+            messages.add_message(request, messages.SUCCESS,"You have successfully logged in.")
             return redirect('index')
         else:
-            messages.add_message(request, messages.ERROR, 'Hatalı username yada parola')
+            messages.add_message(request, messages.ERROR, "Invalid username or password.")
             return redirect('login')
     else:
         return render(request, 'user/login.html')
@@ -33,21 +33,21 @@ def register(request):
         if password == repassword:
             # Username
             if User.objects.filter(username = username).exists():
-                messages.add_message(request, messages.WARNING, 'Bu kullanıcı adı daha önce alınmış.')
+                messages.add_message(request, messages.WARNING, "This username has already been taken.")
                 return redirect('register')
             else:
                 if User.objects.filter(email = email).exists():
-                    messages.add_message(request, messages.WARNING, 'Bu email daha önce alınmış.')
+                    messages.add_message(request, messages.WARNING, "This email has already been taken.")
                     return redirect('register')  
                 else:
                     # her şey güzel
                     user = User.objects.create_user(username=username, password= password,email=email)
                     user.save()
-                    messages.add_message(request, messages.SUCCESS, 'Hesabınız oluşturuldu.')
+                    messages.add_message(request, messages.SUCCESS, "Your account has been successfully created.")
                     return redirect('login')
         else:            
             print('parolalar eşleşmiyor')
-            messages.add_message(request, messages.WARNING, 'Parolalar eşleşmiyor.')
+            messages.add_message(request, messages.WARNING, "The passwords do not match.")
             return redirect('register')
     else:
         return render(request, 'user/register.html')
@@ -55,5 +55,5 @@ def register(request):
 def logout(request):
     if request.method == "POST":
         auth.logout(request)
-        messages.add_message(request, messages.SUCCESS, 'Oturum kapatıldı.')
+        messages.add_message(request, messages.SUCCESS, "Logout successful.")
         return redirect("index") 
