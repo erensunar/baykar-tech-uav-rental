@@ -15,9 +15,9 @@
             <p>Monthly Fee: {{ uav.monthly_fee}} $</p>
 
             {% if uav.is_rented %}
-                <button class="btn btn-primary" disabled>Kiralanmış</button>
+                <button class="btn btn-primary" disabled>Rented out</button>
             {% else %}
-                <a href="{% url 'rental_function' uav.id %}" class="btn btn-primary">Kirala</a>
+                <a href="{% url 'rental_function' uav.id %}" class="btn btn-primary">Rent</a>
             {% endif %}
             
         </div>
