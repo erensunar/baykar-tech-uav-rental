@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="row">
+    {% for rental in rentals %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Rented UAV: {{ rental.uav.model }}</h5>
+                <p class="card-text">Rental Start Date: {{ rental.rental_start_date }}</p>
+                <p class="card-text">Rental End Date: {{ rental.rental_end_date }}</p>
+                <p class="card-text">Remaining Days: {{ rental.remaining_days }}</p>
+                <p class="card-text">Monthly Fee: {{ rental.uav.monthly_fee }}</p>
+                <a href="{% url 'cancel_rental' rental.id %}" class="btn btn-danger">Cancel Rental</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
